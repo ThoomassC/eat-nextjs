@@ -4,4 +4,6 @@ export interface Recipe {
   description: string;
   time: number;
   difficulty: number;
+  averageNote: number;
+  image?: string;
 }

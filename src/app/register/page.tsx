@@ -30,14 +30,32 @@ export default function RegisterPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded shadow">
-        <h1 className="text-2xl font-bold text-center mb-6">Inscription</h1>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      <div
+        className="w-full max-w-md p-8 rounded-lg shadow-lg"
+        style={{
+          backgroundColor: "#F5F5DC",
+          border: "2px solid #8B4513",
+        }}
+      >
+        <h1
+          className="text-2xl font-bold text-center mb-6"
+          style={{
+            fontFamily: "'Cinzel', serif",
+          }}
+        >
+          Inscription
+        </h1>
+        {error && (
+          <p className="text-center mb-4" style={{ color: "#8B0000" }}>
+            {error}
+          </p>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium"
+              style={{ color: "#8B4513" }}
             >
               Nom
             </label>
@@ -46,14 +64,15 @@ export default function RegisterPage() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-yellow-300"
               required
             />
           </div>
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium"
+              style={{ color: "#8B4513" }}
             >
               Email
             </label>
@@ -62,14 +81,15 @@ export default function RegisterPage() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-yellow-300"
               required
             />
           </div>
           <div className="mb-6">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium"
+              style={{ color: "#8B4513" }}
             >
               Mot de passe
             </label>
@@ -78,20 +98,29 @@ export default function RegisterPage() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full px-4 py-2 mt-1 border rounded focus:outline-none focus:ring focus:ring-yellow-300"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full px-4 py-2 rounded"
+            style={{
+              backgroundColor: "#FFD700", // Jaune Fromage
+              color: "#8B4513", // Brun Montagne & Bois
+              fontWeight: "bold",
+            }}
           >
-            S&#39;inscrire
+            S&apos;inscrire
           </button>
         </form>
-        <p className="mt-4 text-sm text-center">
+        <p className="mt-4 text-sm text-center" style={{ color: "#8B4513" }}>
           Déjà un compte ?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
+          <a
+            href="/login"
+            className="hover:underline"
+            style={{ color: "#8B0000" }}
+          >
             Connectez-vous
           </a>
         </p>

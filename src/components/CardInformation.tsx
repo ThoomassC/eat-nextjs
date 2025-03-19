@@ -5,10 +5,7 @@ type CardInformationProps = {
   readonly content: React.ReactNode;
 };
 
-export default function CardInformation({
-  title,
-  content,
-}: CardInformationProps) {
+export function CardInformation({ title, content }: CardInformationProps) {
   return (
     <div
       className="p-6 rounded-lg shadow-lg"
@@ -20,7 +17,6 @@ export default function CardInformation({
       <h2
         className="text-2xl font-bold mb-4"
         style={{
-          color: "#FFD700",
           fontFamily: "'Cinzel', serif",
         }}
       >
