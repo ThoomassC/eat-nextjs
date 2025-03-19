@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     if (!email || !password) {
       return NextResponse.json(
-        { message: "Email and password are required" },
+        { message: "L'email et le mot de passe sont requis." },
         { status: 400 }
       );
     }
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already exists" },
+        { message: "Cet utilisateur existe déjà." },
         { status: 400 }
       );
     }
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { message: "User registered successfully", user },
+      { message: "L'utilisateur a été enregistré avec succès", user },
       { status: 201 }
     );
   } catch (error) {

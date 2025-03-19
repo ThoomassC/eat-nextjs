@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return NextResponse.json(
-        { message: "Invalid credentials" },
+        { message: "L'utilisateur n'existe pas" },
         { status: 401 }
       );
     }
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return NextResponse.json(
-        { message: "Invalid credentials" },
+        { message: "Le mot de passe est invalide" },
         { status: 401 }
       );
     }
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { message: "Login successful", token },
+      { message: "La connexion a réussi", token },
       { status: 200 }
     );
   } catch (error) {
