@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ export default function LoginPage() {
     try {
       const response = await axios.post("/api/auth/login", { email, password });
       const { token } = response.data;
-      localStorage.setItem("token", token);
+      login(token);
 
       alert("Connexion réussie !");
       router.push("/recipes");
@@ -91,8 +93,8 @@ export default function LoginPage() {
             type="submit"
             className="w-full px-4 py-2 rounded"
             style={{
-              backgroundColor: "#FFD700", // Jaune Fromage
-              color: "#8B4513", // Brun Montagne & Bois
+              backgroundColor: "#FFD700",
+              color: "#8B4513",
               fontWeight: "bold",
             }}
           >
