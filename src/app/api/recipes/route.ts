@@ -99,34 +99,29 @@ export async function DELETE(req: Request) {
     );
   }
 }
-
 export async function PUT(req: Request) {
   try {
-    const { id, name, description, difficulty, time, ingredients, steps } =
-      await req.json();
+    const { id, averageNote } = await req.json();
 
-    if (!id) {
+    if (!id || averageNote === undefined) {
       return NextResponse.json(
-        { message: "Recipe ID est requis" },
+        { message: "Les champs Recipe ID et averageNote sont requis" },
+        { status: 400 }
+      );
+    }
+
+    const recipeId = parseInt(id, 10);
+    if (isNaN(recipeId)) {
+      return NextResponse.json(
+        { message: "Recipe ID doit être un entier valide" },
         { status: 400 }
       );
     }
 
     const updatedRecipe = await prisma.recipe.update({
-      where: { id },
+      where: { id: recipeId },
       data: {
-        name,
-        description,
-        difficulty,
-        time,
-        ingredients: {
-          deleteMany: {}, // Supprime les anciens ingrédients
-          create: ingredients, // Ajoute les nouveaux ingrédients
-        },
-        steps: {
-          deleteMany: {}, // Supprime les anciennes étapes
-          create: steps, // Ajoute les nouvelles étapes
-        },
+        averageNote,
       },
     });
 

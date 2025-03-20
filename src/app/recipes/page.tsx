@@ -43,6 +43,7 @@ export default function RecipesPage() {
         {recipes.map((recipe) => (
           <CardMeal
             key={recipe.id}
+            id={String(recipe.id)}
             title={recipe.name}
             description={recipe.description}
             difficulty={recipe.difficulty}
